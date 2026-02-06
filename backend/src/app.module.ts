@@ -1,13 +1,18 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { MailModule } from './mail/mail.module';
-import { TelegramModule } from './telegram/telegram.module';
-import { AiModule } from './ai/ai.module';
+import { UserModule } from './user/user.module';
 
 @Module({
-    imports: [AuthModule, MailModule, TelegramModule, AiModule],
+    imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+        }),
+        AuthModule,
+        UserModule,
+    ],
     controllers: [AppController],
     providers: [AppService],
 })
