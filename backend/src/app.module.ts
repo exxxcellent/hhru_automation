@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { DictionariesModule } from './dictionaries/dictionaries.module';
+import { VacanciesModule } from './vacancies/vacancies.module';
 
 @Module({
     imports: [
@@ -12,6 +14,8 @@ import { UserModule } from './user/user.module';
         }),
         AuthModule,
         UserModule,
+        DictionariesModule,
+        VacanciesModule,
     ],
     controllers: [AppController],
     providers: [AppService],

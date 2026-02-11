@@ -1,9 +1,14 @@
-import { Flex, Image, Loader, Typography } from '@mantine/core';
+import { Flex, Loader, Typography } from '@mantine/core';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
+
 import { useEffect } from 'react';
 import { useProfile } from '../entities/user/hooks/useProfile.hook';
+import { useVacancies } from '../entities/vacancies/hooks/useVacancies.hook';
+import type { Vacancy } from '../entities/vacancies/types/vacancy.type';
+import { default as VacanciesList } from '../entities/vacancies/ui/list';
+import MySearch from '../features/search/ui/my_search';
 import { useTokens } from '../shared/hooks/useTokens';
-import Nav from '../widgets/nav/ui/nav';
+import NavDrawer from '../widgets/nav/ui/drawer';
 
 export const Route = createFileRoute('/' as unknown as undefined)({
     component: RouteComponent,
@@ -12,15 +17,16 @@ export const Route = createFileRoute('/' as unknown as undefined)({
 function RouteComponent() {
     const navigate = useNavigate();
 
-    const profile = useProfile();
     const { tokens } = useTokens();
+    const profile = useProfile();
+    const vacancies = useVacancies();
 
     useEffect(() => {
         if (!tokens.accessToken || !tokens.refreshToken)
             navigate({ to: '/welcome' });
     }, [tokens]);
 
-    if (profile.isLoading)
+    if (profile.isLoading || vacancies.isLoading)
         return (
             <Flex
                 className="w-full min-h-full"
@@ -32,41 +38,18 @@ function RouteComponent() {
 
     return (
         <>
-            <Nav />
             <Flex
                 className="w-full min-h-full"
                 direction="column"
                 align="center"
-                justify="center"
                 gap="xl">
                 <Typography className="self-start text-2xl font-display">
-                    Главная
+                    автопоиск
                 </Typography>
-                <Flex
-                    className="size-full"
-                    align="center"
-                    justify="center"
-                    direction="column"
-                    gap="sm">
-                    <Flex
-                        gap="sm"
-                        justify="center">
-                        <Typography className="text-center !text-4xl leading-tight font-display">
-                            Привет!
-                        </Typography>
-                        <Image
-                            w="48px"
-                            src="/icons/hello.svg"
-                        />
-                    </Flex>
-                    <Typography
-                        className="text-center"
-                        fz="md">
-                        На этой странице ты будешь видеть результат действий
-                        программы
-                    </Typography>
-                </Flex>
+                <MySearch />
+                <VacanciesList data={vacancies.data as Vacancy[]} />
             </Flex>
+            <NavDrawer />
         </>
     );
 }

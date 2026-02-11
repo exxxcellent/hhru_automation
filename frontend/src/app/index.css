@@ -12,3 +12,20 @@
     --font-display: 'TTTravelsNextTrl', 'sans-serif';
     --font-body: 'Inter', 'sans-serif';
 }
+
+@layer utilities {
+    /* Chrome, Safari, Opera */
+    .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Firefox */
+    .scrollbar-hidden {
+        scrollbar-width: none;
+    }
+
+    /* IE и Edge */
+    .scrollbar-hidden {
+        -ms-overflow-style: none;
+    }
+}

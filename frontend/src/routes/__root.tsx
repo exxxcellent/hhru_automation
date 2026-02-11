@@ -8,7 +8,7 @@ export const Route = createRootRoute({
 export default function Layout() {
     return (
         <Flex
-            className="w-screen min-h-screen !font-body"
+            className="max-w-screen min-h-screen !font-body"
             p="lg">
             <Outlet />
         </Flex>

@@ -27,7 +27,7 @@ export default function RouteComponent() {
                     className="text-center !text-4xl leading-tight font-display"
                     fz="h1"
                     fw="bolder">
-                    Добро <br /> пожаловать!
+                    добро <br /> пожаловать!
                 </Typography>
                 <Typography
                     className="text-center text-xl font-body"

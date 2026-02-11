@@ -4,7 +4,7 @@ import { apiClient } from '../../app/config/axios';
 import { useProfile } from '../../entities/user/hooks/useProfile.hook';
 import UserProfilePreview from '../../entities/user/ui/profile_preview';
 import { useTokens } from '../../shared/hooks/useTokens';
-import Nav from '../../widgets/nav/ui/nav';
+import NavDrawer from '../../widgets/nav/ui/drawer';
 
 export const Route = createFileRoute('/settings')({
     component: RouteComponent,
@@ -41,7 +41,7 @@ function RouteComponent() {
             direction="column"
             gap="lg">
             <Typography className="self-start text-2xl font-display">
-                Настройки
+                настройки
             </Typography>
             <UserProfilePreview />
             <Button
@@ -54,7 +54,7 @@ function RouteComponent() {
                 fz="md">
                 Выйти
             </Button>
-            <Nav />
+            <NavDrawer />
         </Flex>
     );
 }
