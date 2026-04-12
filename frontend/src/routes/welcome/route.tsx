@@ -12,10 +12,12 @@ export default function RouteComponent() {
 
     return (
         <Flex
-            h="100vh"
+            h="100%"
+            mx={'auto'}
             justify="center"
             align="center"
             direction="column"
+            className="self-center"
             gap="xl">
             <Flex
                 w="100%"
